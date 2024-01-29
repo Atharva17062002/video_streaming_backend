@@ -2,16 +2,10 @@ import mongoose from "mongoose";
 import jwt  from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-
-
-const userSchema = new mongoose.Schema({
-    // id:{
-    //     type: String,
-    //     required: true,
-    //     unique: true
-    // },
+const userSchema = new mongoose.Schema(
+    {
     username:{
-        type: String,
+        type: String ,
         required: true,
         unique: true,
         lowercase: true,
@@ -31,7 +25,6 @@ const userSchema = new mongoose.Schema({
     },
     refreshToken:{
         type: String,
-        // required: false,
     },
     fullName:{
         type: String,
@@ -42,7 +35,6 @@ const userSchema = new mongoose.Schema({
     avatar:{
         type: String, //cloudinary url
         required: true,
-         
     },
     coverImage:{
         type: String,
@@ -63,7 +55,7 @@ userSchema.pre("save", async function(next){
     next();
 });
 
-userSchema.methods.isPasswordCorrect = async function(password){
+userSchema.methods.isPasswordCorrect = async function(password) {
     const user = this;
     return await bcrypt.compare(password, user.password);
 }

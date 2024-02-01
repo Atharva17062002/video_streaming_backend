@@ -157,7 +157,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
   User.findByIdAndUpdate(
     req.user._id,
-    { $set: { refreshToken: undefined } },
+    { $unset: { refreshToken: undefined } },
     { new: true, runValidators: true }
   );
   const options = {
@@ -425,15 +425,15 @@ const getWatchHistory = asyncHandler(async (req, res) => {
 });
 
 export {
-  registerUser,
-  loginUser,
-  logoutUser,
-  refreshAccessToken,
-  changeCurrentPassword,
-  getCurrentUser,
-  updateAccountDetails,
-  updateAvatar,
-  updateCoverImage,
-  getUserChannelProfile,
-  getWatchHistory,
+    registerUser,
+    loginUser,
+    logoutUser,
+    refreshAccessToken,
+    changeCurrentPassword,
+    getCurrentUser,
+    updateAccountDetails,
+    updateAvatar,
+    updateCoverImage,
+    getUserChannelProfile,
+    getWatchHistory,
 };
